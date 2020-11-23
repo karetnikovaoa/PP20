@@ -2,6 +2,7 @@ import UIKit
 
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var imageToFilter: UIImageView!
@@ -22,7 +23,7 @@ class ViewController: UIViewController {
         return true
     }
     
-    func filterButtonTapped(sender: UIButton) {
+    @objc func filterButtonTapped(sender: UIButton) {
         let button = sender as UIButton
         
         imageToFilter.image = button.backgroundImage(for: UIControl.State.normal)
@@ -43,16 +44,16 @@ class ViewController: UIViewController {
     
     
     
-    func savePicButton(_ sender: Any) {
+    //func savePicButton(_ sender: Any) {
         // Save the image into camera roll
-        UIImageWriteToSavedPhotosAlbum(imageToFilter.image!, nil, nil, nil)
+      //  UIImageWriteToSavedPhotosAlbum(imageToFilter.image!, nil, nil, nil)
         
-        let alert = UIAlertView(title: "Filters",
-                                message: "Your image has been saved to Photo Library",
-                                delegate: nil,
-                                cancelButtonTitle: "OK")
-        alert.show()
-    }
+       // let alert = UIAlertView(title: "Filters",
+                             //message: "Your image has been saved to Photo Library",
+                              //  delegate: nil,
+                    //            cancelButtonTitle: "OK")
+        //alert.show()
+   // }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +77,8 @@ class ViewController: UIViewController {
             filterButton.frame = CGRectMake(xCoord, yCoord, buttonWidth, buttonHeight)
             filterButton.tag = itemCount
             filterButton.showsTouchWhenHighlighted = true
-            filterButton.addTarget(self, action: #selector(ViewController.filterButtonTapped(_:)), for: UIControl.Event.TouchUpInside)
+            filterButton.addTarget(self, action: #selector(ViewController.filterButtonTapped(sender:)), for:.touchUpInside)
+
             filterButton.layer.cornerRadius = 6
             filterButton.clipsToBounds = true
             
